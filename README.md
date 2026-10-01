@@ -1,5 +1,11 @@
 # magicpin AI Challenge — Vera Assistant Submission
 
+**Team**: Aryan Singh  
+**Contact**: aryansinghdps1@gmail.com  
+**Model**: Gemini 3.7 Flash  
+
+---
+
 ## Overview & Architecture
 
 This solution implements **Vera**, magicpin's merchant AI assistant, built for high-conversion WhatsApp engagement across five key verticals:
@@ -14,6 +20,7 @@ This solution implements **Vera**, magicpin's merchant AI assistant, built for h
 - **`conversation_handlers.py`**: Multi-turn dialog manager featuring automated auto-reply detection, instant intent transitions from qualification to action mode, hostility/opt-out suppression, and out-of-scope redirection.
 - **`bot.py`**: High-performance FastAPI server exposing the 5 required HTTP REST endpoints (`/v1/healthz`, `/v1/metadata`, `/v1/context`, `/v1/tick`, `/v1/reply`).
 - **`submission.jsonl`**: Exactly 30 canonical test messages evaluated against the challenge benchmark.
+- **`Dockerfile` & `docker-compose.yml`**: Production-ready, zero-configuration containerization.
 
 ---
 
@@ -38,19 +45,19 @@ This solution implements **Vera**, magicpin's merchant AI assistant, built for h
 
 ---
 
-## Running & Testing
+## Running & Deployment
 
-### 1. Install Dependencies
+### Method 1: Using Docker Compose (Recommended)
 ```bash
-pip install fastapi uvicorn requests pydantic
+docker compose up -d
 ```
+The server will start on port `8080` with automatic restart enabled.
 
-### 2. Start the Bot Server
+### Method 2: Native Python
 ```bash
+# 1. Install dependencies
+pip install -r requirements.txt
+
+# 2. Start the server
 uvicorn bot:app --host 0.0.0.0 --port 8080
-```
-
-### 3. Run the LLM Judge Simulator
-```bash
-python judge_simulator.py
 ```
