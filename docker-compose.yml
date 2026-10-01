@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  magicpin-bot:
+    build: .
+    container_name: magicpin-vera-bot
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
